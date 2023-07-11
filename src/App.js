@@ -5,14 +5,15 @@ function App() {
   var [count,setCount]=useState(0)
   var t1 = setInterval(() => {
     setCount(count+1)
+
     
-  }, 2000);
+  }, 1000);
   
-        useEffect(()=>{
+  useEffect(()=>{
           
-              return()=>{
+          return()=>{
                 clearInterval(t1)
-              }
+                }
 
         })
   return (
