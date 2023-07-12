@@ -10,9 +10,10 @@ function App() {
   }, 1000);
   
   useEffect(()=>{
-          
-          return()=>{
-                clearInterval(t1)
+    console.log(`After Mounting ${count}`);
+    return()=>{
+      clearInterval(t1)
+      console.log(`Before Mounting ${count}`);
                 }
 
         })
