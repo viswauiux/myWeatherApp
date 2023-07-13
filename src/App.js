@@ -2,11 +2,13 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
- 
-  const num =5;
+  for(let i =0;i<=10;i++){
+    if(i===5)continue;
+    console.log(i);
+  }
   return (
     <div className="App">
-      <h1>{num}</h1>
+       
     </div>
   );
 }
