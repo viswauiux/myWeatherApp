@@ -2,9 +2,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
-var a= function (){}
+ 
 
-console.log(typeof a)
+console.log(1=== 'number')
   return (
     <div className="App">
        HELLO
