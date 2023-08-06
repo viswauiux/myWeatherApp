@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responce = await api.get("https://dummyjson.com/quotes");
+        const responce = await api.get("/quotes");
         setPosts(responce.data);
         console.log(responce.data.quotes.map(item=>console.log(item)));
       } catch (err) {
