@@ -29,7 +29,7 @@ function WeatherCard({data}) {
             <div className="more-info-title">UV Index</div>
         </div>
         <div className="more-info">
-            <div className="moreinfo1">{data.current.wind_kph} <span style={{fontSize:"10px"}}>Km/h</span></div>
+            <div className="moreinfo1">{data.current.wind_kph} <span style={{fontSize:"8px"}}>Km/h</span></div>
             <div className="more-info-title">Wind</div>
         </div>
         <div className="more-info">
