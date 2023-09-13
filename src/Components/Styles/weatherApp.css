@@ -21,8 +21,8 @@
 }
 
 .main-body {
-  width: 100%;
-  height: 100vh;
+  width: 1030px;
+  height: 700px;
   background: var(--mainBG);
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@
 }
 .phone-layout {
   width: 500px;
-  height: 651px;
+
   background: #ffffff;
   border: 1px solid #cecece;
   box-shadow: 21px 19px 68px rgba(0, 0, 0, 0.12);
@@ -51,7 +51,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  position: relative;
+  z-index: 1;
 
 }
 .search-container input {
@@ -74,12 +75,16 @@
     color: white;
     background-color:   var(--blue);
 }
+.search-container button:hover{
+  cursor: pointer;
+}
 .weather-card{
     width: 100%;
     /* height: 180px; */
     box-shadow: 4px 4px 13px rgba(0, 0, 0, 0.166);
     border-radius: 24px;
     padding: 18px 24px;
+    background: linear-gradient(247.66deg, #E4FAFF -10.65%, #FFFFFF 97.84%);
     
 }
 .main-weather{
@@ -100,17 +105,17 @@
 }
 
 .cityInfo{
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color2);
     font-weight: 600;
 
 }
 .city-temparature{
-  font-size: 54px;
+  font-size: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content:flex-start;
   width: 150px;
 }
 .city-temparature img{
@@ -144,4 +149,29 @@
 .more-info-container{
 display: flex;
 justify-content: space-between;
+}
+.suggetionbox{
+ 
+   padding-left: 24px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top:34px;
+  z-index: -1;
+  width: 354px;
+  box-shadow: 4px 4px 13px rgba(0, 0, 0, 0.166);
+
+  border-radius: 18px;
+  border-radius: 18px 0 18px 18px ;
+}
+.suggetionbox-btn{
+  padding: 8px 0;
+  font-size: var(--font1);
+  font-weight: 300;
+
+}
+.suggetionbox-btn:hover{
+  cursor: pointer;
+  font-weight: 500;
 }

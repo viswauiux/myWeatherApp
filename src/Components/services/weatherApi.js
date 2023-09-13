@@ -8,7 +8,7 @@ export const weatherApi = createApi({
   endpoints: (builder) => ({
     getCityWeather: builder.query({
       query: (params) => ({
-        url:`?q=hyderabad`,
+        url:`?q=${params}`,
         method:"GET",
         headers: {
             'X-RapidAPI-Key': '0c3380c8dfmshddbc8bfa6edf74dp181c0bjsn60a653429462',
@@ -22,4 +22,4 @@ export const weatherApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpointsweatherApi
-export const { useGetCityWeatherQuery,useLazyGetCityWeatherQuer } = weatherApi
+export const { useGetCityWeatherQuery,useLazyGetCityWeatherQuery } = weatherApi
