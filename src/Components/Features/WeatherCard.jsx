@@ -1,6 +1,8 @@
 import React from 'react'
+import {  useGetCityWeatherQuery } from '../services/weatherApi'
 
 function WeatherCard() {
+   
   return (
     <div className='weather-card'>
         <div className="main-weather">
