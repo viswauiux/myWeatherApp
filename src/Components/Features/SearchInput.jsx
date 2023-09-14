@@ -58,7 +58,7 @@ function SearchInput() {
       call();
     }
   }, [dynamicInp]);
-  console.log(fetchedcities);
+  console.log(localCity);
   return (
     <>
       <div className="search-container">
@@ -81,10 +81,10 @@ function SearchInput() {
                   className="suggetionbox-btn"
                   onClick={() => {
                     inpRef.current.value = item.name;
-                    setLocalCity(item.name)
+                    setLocalCity(`${item.name} ${item.region}`)
                     setFetchedCities("");
                   }}
-                >{`${item.name},${item.region}, ${item.country}`}</div>
+                >{`${item.name}, ${item.region}, ${item.country}`}</div>
               );
             })}
         </div>
