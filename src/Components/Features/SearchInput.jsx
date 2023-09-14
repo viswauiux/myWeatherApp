@@ -23,7 +23,7 @@ function SearchInput() {
       setFetchedCities("");
     }
   }
-  function debounce(cb, delay = 1000) {
+  function debounce(cb, delay = 300) {
     let timeout;
 
     return (...arg) => {

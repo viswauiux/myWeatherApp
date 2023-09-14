@@ -19,8 +19,8 @@ function WeatherCard({data}) {
             </div>
         </div>
         <div className="city-temparature">
-            <img src={`https:${data.current.condition.icon}`} className='weather-image' alt="" />
             <div className="temp">{data.current.temp_c} <span style={{fontSize:"24px"}}>°C</span></div>
+            <img src={`https:${data.current.condition.icon}`} className='weather-image' alt="" />
         </div>
         </div>
         <div className="more-info-container">
