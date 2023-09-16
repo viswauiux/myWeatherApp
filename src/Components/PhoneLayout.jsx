@@ -8,7 +8,7 @@ function PhoneLayout() {
       <SearchInput></SearchInput>
       <WeatherCard></WeatherCard>
       {/* <WeatherCard></WeatherCard> */}
-      <div style={{justifySelf:"flex-end",fontSize:"12px"}}>App Designed and created by <b>Viswa Kiran Kathi</b></div>
+      <div className='credits'>App Designed and created by <b>Viswa Kiran Kathi</b></div>
     </div>
   )
 }

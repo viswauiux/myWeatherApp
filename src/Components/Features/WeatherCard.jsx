@@ -3,8 +3,13 @@ import { useSelector } from "react-redux";
 
 function WeatherCard() {
   const {weather} = useSelector((state) => state.currentWeather);
+ 
   return (
-    <>
+    <>{
+        !weather&&(
+            <div>Getting your current city Weather</div>
+        )
+    }
       {weather && (
         <div className="weather-card">
           <div className="main-weather">
@@ -14,7 +19,7 @@ function WeatherCard() {
               </div>
               <div className="cityInfo">
                 ( {weather.location.country}) <br></br>
-                {weather.current.last_updated}
+                 last update at {weather.current.last_updated.split(' ')[1]}
                 <br></br>
                 {weather.current.condition.text}
               </div>
@@ -41,7 +46,7 @@ function WeatherCard() {
             <div className="more-info">
               <div className="moreinfo1">
                 {weather.current.wind_kph}{" "}
-                <span style={{ fontSize: "8px" }}>Km/h</span>
+                <span className="smallfont" style={{ fontSize: "8px" }}>Km/h</span>
               </div>
               <div className="more-info-title">Wind</div>
             </div>

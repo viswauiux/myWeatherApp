@@ -5,7 +5,6 @@ function WeatherApp() {
   return (
     <div className='main-body'>
         <PhoneLayout></PhoneLayout>
-        
     </div>
   )
 }
