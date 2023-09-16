@@ -7,7 +7,9 @@ function WeatherCard() {
   return (
     <>{
         !weather&&(
-            <div>Getting your current city Weather</div>
+            <div> <h2>Hi Everyone!!! </h2><br />
+                You can search weather by City Name
+            </div>
         )
     }
       {weather && (

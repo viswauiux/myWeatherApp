@@ -17,6 +17,7 @@ function SearchInput() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
+      setLocalCity("hyderabad")
      console.log("Geolocation is not supported by this browser.")
     }
   }
@@ -24,6 +25,7 @@ function SearchInput() {
   function showPosition(position) {
     setLocalCity( position.coords.latitude + 
     "," + position.coords.longitude)
+
   }
   if(!localCity){getLocation()}
   
