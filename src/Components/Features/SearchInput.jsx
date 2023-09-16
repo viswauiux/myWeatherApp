@@ -7,7 +7,7 @@ import useDebounce from "../../CustonHooks/useDebounce";
 
 function SearchInput() {
   const [dynamicInp, setDynamicInp] = useState();
-  const [localCity, setLocalCity] = useState();
+  const [localCity, setLocalCity] = useState('hyderabad');
   const inpRef = useRef();
   const [fetchedcities, setFetchedCities] = useState();
   const { data } = useGetCityWeatherQuery(localCity);
