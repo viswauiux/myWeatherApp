@@ -10,7 +10,6 @@ export const currentWeatherSlice = createSlice({
   
     setWeather: (state, action) => {
         state.weather=(action.payload)
-        console.log(state);
     },
 },
 })
