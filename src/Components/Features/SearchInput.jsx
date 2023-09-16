@@ -1,18 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGetCityWeatherQuery } from "../services/weatherApi";
-import WeatherCard from "./WeatherCard";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setWeather } from "./mySlice/weatherSlice";
+import useDebounce from "../../CustonHooks/useDebounce";
 
 function SearchInput() {
   const [dynamicInp, setDynamicInp] = useState();
-  const [localCity, setLocalCity] = useState("hyderabad");
+  const [localCity, setLocalCity] = useState();
   const inpRef = useRef();
   const [fetchedcities, setFetchedCities] = useState();
-  const { data, isLoading } = useGetCityWeatherQuery(localCity);
+  const { data } = useGetCityWeatherQuery(localCity);
+  const dispatch = useDispatch()
 
-  let updatedDebounce = debounce((text) => setDynamicInp(text));
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+     console.log("Geolocation is not supported by this browser.")
+    }
+  }
+  
+  function showPosition(position) {
+    setLocalCity( position.coords.latitude + 
+    "," + position.coords.longitude)
+  }
+  if(!localCity){getLocation()}
+  
 
-  function searchCity(e) {
+ 
+  let updatedDebounce =  useDebounce((text) => setDynamicInp(text),300);
+
+
+
+  function searchCity() {
     setLocalCity(inpRef.current.value);
     setFetchedCities("");
   }
@@ -23,17 +44,9 @@ function SearchInput() {
       setFetchedCities("");
     }
   }
-  function debounce(cb, delay = 300) {
-    let timeout;
 
-    return (...arg) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        cb(...arg);
-      }, delay);
-    };
-  }
 
+  useEffect(()=>{ if(data){dispatch(setWeather(data))}})
   useEffect(() => {
     if (dynamicInp) {
       async function call() {
@@ -50,7 +63,7 @@ function SearchInput() {
         try {
           await axios
             .request(options)
-            .then((data) => setFetchedCities(data.data));
+            .then((data) => {setFetchedCities(data.data)});
         } catch (err) {
           console.log(err);
         }
@@ -58,7 +71,7 @@ function SearchInput() {
       call();
     }
   }, [dynamicInp]);
-  console.log(localCity);
+   
   return (
     <>
       <div className="search-container">
@@ -76,8 +89,10 @@ function SearchInput() {
         <div className="suggetionbox">
           { 
             fetchedcities.map((item) => {
+              
               return (
                 <div
+                  key={Math.random()}
                   className="suggetionbox-btn"
                   onClick={() => {
                     inpRef.current.value = item.name;
@@ -90,8 +105,7 @@ function SearchInput() {
         </div>
           </>}
       </div>
-
-      {!isLoading && <WeatherCard data={data}></WeatherCard>}
+      
     </>
   );
 }
