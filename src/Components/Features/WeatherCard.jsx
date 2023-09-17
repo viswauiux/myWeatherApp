@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function WeatherCard() {
   const {weather} = useSelector((state) => state.currentWeather);
- 
+ console.log(weather);
   return (
     <>{
         !weather&&(
