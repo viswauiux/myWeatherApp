@@ -1,41 +1,78 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
-import api from './Api/posts'
+import axios from "axios";
+import TableHeader from "./components/TableHeader";
+import Open from "./components/Open";
+import Close from "./components/Close";
 
 function App() {
   const [data, setData] = useState();
-  const Api = "https://api.themoviedb.org/3/discover/movie"
-  const image = "https://images.tmdb.org/t/p/w500"
+  const [sorted, setSorted] = useState();
+
+  const fetchData = async () => {
+    try {
+      const responce = await axios
+        .get(
+          "https://f68370a9-1a80-4b78-b83c-8cb61539ecd6.mock.pstmn.io/api/v1/get_market_dat"
+        )
+        .then((data) => data.data.data.reverse().splice(0,7));
+      console.log(responce);
+      setData(responce);
+    } catch (err) {
+      if (err.responce) {
+        console.log(err.responce.status);
+      }
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responce = await api.get(Api,{
-          params:{
-            api_key:'e5c140e5d7cddcc37ecdcf27a8535994'
-          }
-        });
-        console.log(responce.data.results)
-        setData(responce.data.results);
-        // console.log(responce.data.quotes.map(item=>console.log(item)));
-      } catch (err) {
-        if(err.responce){
-         console.log(err.responce.status);
-        }
-        console.log(err);
-      }
-    };
     fetchData();
+    return () => {
+      console.log("Hello");
+    };
   }, []);
+
   return (
-    <div className="App " style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-      
-      {
-        data && data.map(item=>{
-          return(<img key={item.id} src={image+item.backdrop_path} alt="" />)
-        })
+    <>
+      {data && (
+        <>
+        <table >
+          <thead>
+            <tr>
+              <th>Date</th>
+              {data.map((item) => {
+                return (
+                  <TableHeader key={item.volume} date={item.date}></TableHeader>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Open</th>
+              {data.map((item) => {
+                return (
+                  <Open key={item.volume} open={item.open}></Open>
+                );
+              })}
+            </tr>
+            <tr>
+            <th>Close</th>
+              {data.map((item) => {
+                return (
+                  <Close key={item.volume} close={item.close}></Close>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+        <button>Next</button>
+        <button>Previous</button>
+        </>
+      )
+            
       }
-    </div>
+    </>
   );
 }
 
