@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Close({close}) {
+function Close({close,color}) {
   return (
     <>
-    <td>{close}</td>
+    <td style={{color}}>{close}</td>
     </>
   )
 }

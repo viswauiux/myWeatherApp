@@ -1,51 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TableHeader from "./TableHeader";
 import Open from "./Open";
 import Close from "./Close";
 
 function Table({data}) {
+    const [currentpage,setCurrentPage] = useState(1)
 
+    const recordPerPage = 7;
+    const lastIndex = currentpage * recordPerPage;
+    const firstIndex = lastIndex - recordPerPage;
+    const records = data.slice(firstIndex,lastIndex);
+    const nPage = Math.ceil(data.length/recordPerPage)
 
+    const red = "red"
+    const green = 'green'
+
+    console.log(records);
     function nextPage(){
-        console.log();
+        if(currentpage!==nPage){
+            setCurrentPage(currentpage + 1)
+
+        }
+
       }
     function prevPage(){
-        console.log();
+        if(currentpage!==1){
+            setCurrentPage(currentpage - 1)
+
+        }
       }
   return (
       <>
+      <div style={{display:'flex',justifyContent:'center',flexDirection:'column'}}>
         <table >
           <thead>
             <tr>
               <th>Date</th>
-              {data.map((item) => {
-                return (
-                  <TableHeader key={item.volume} date={item.date}></TableHeader>
-                );
-              })}
+              {records.map((item) => {
+                  return (
+                      <TableHeader key={item.volume}  date={item.date}></TableHeader>
+                      );
+                    })}
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>Open</th>
-              {data.map((item) => {
-                return (
-                  <Open key={item.volume} open={item.open}></Open>
-                );
-              })}
+              {records.map((item,index) => {
+                  return (records[index-1]?.open<item.open?
+                    <Open key={item.volume} color={green} open={item.open}></Open>:
+                    <Open key={item.volume} color={red} open={item.open}></Open>
+                    
+                    );
+                })}
             </tr>
             <tr>
             <th>Close</th>
-              {data.map((item) => {
-                return (
-                  <Close key={item.volume} close={item.close}></Close>
-                );
-              })}
+              {records.map((item,index) => {
+                  return (records[index-1]?.close<item.close?
+                    <Close key={item.volume} color={green} close={item.close}></Close>:
+                    <Close key={item.volume} color={red} close={item.close}></Close>
+                    );
+                })}
             </tr>
           </tbody>
         </table>
-        <button onClick={()=>nextPage()}>Next</button>
+       <div style={{display:'flex',justifyContent:'center'}}>
+        
         <button onClick={()=>prevPage()}>Previous</button>
+        <button onClick={()=>nextPage()}>Next</button>
+        </div>
+        </div>
         </>
   )
 }

@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 
 function TableHeader({date}) {
-    const [d] = useState([
-         new Date(date).getDate(),
-         new Date(date).getMonth(),
-         new Date(date).getFullYear(),
-    ])
-
-    const [completeDate] = useState(d.join('/'))
-    console.log(completeDate)
+    const [d] = useState({
+        date: new Date(date).getDate(),
+        month: new Date(date).getMonth()+1,
+        year: new Date(date).getFullYear(),
+})
+ 
+    const [completeDate] = useState(Object.values(d).join('/'))
 
   return (
    <>

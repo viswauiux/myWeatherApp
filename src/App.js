@@ -20,7 +20,7 @@ function App() {
         .get(
           "https://f68370a9-1a80-4b78-b83c-8cb61539ecd6.mock.pstmn.io/api/v1/get_market_dat"
         )
-        .then((data) => data.data.data.reverse().splice(0,7));
+        .then((data) => data.data.data.reverse());
       console.log(responce);
       setData(responce);
     } catch (err) {

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Open({open}) {
+function Open({open,color}) {
   return (
     <>
-    <td>{open}</td>
+    <td style={{color}}>{open}</td>
     </>
   )
 }
