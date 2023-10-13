@@ -2,13 +2,17 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import TableHeader from "./components/TableHeader";
-import Open from "./components/Open";
-import Close from "./components/Close";
+
+import Table from "./components/Table";
 
 function App() {
   const [data, setData] = useState();
-  const [sorted, setSorted] = useState();
+
+
+
+    
+
+
 
   const fetchData = async () => {
     try {
@@ -35,40 +39,7 @@ function App() {
   return (
     <>
       {data && (
-        <>
-        <table >
-          <thead>
-            <tr>
-              <th>Date</th>
-              {data.map((item) => {
-                return (
-                  <TableHeader key={item.volume} date={item.date}></TableHeader>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Open</th>
-              {data.map((item) => {
-                return (
-                  <Open key={item.volume} open={item.open}></Open>
-                );
-              })}
-            </tr>
-            <tr>
-            <th>Close</th>
-              {data.map((item) => {
-                return (
-                  <Close key={item.volume} close={item.close}></Close>
-                );
-              })}
-            </tr>
-          </tbody>
-        </table>
-        <button>Next</button>
-        <button>Previous</button>
-        </>
+          <Table data={data}></Table>
       )
             
       }
